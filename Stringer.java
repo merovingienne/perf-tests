@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author chanuka
@@ -17,6 +11,22 @@ public class Stringer {
         long buffer_total = 0;
 
         final String a = "a";
+
+        // Warm-up
+        for (int j = 0; j < 1200; j++) {
+            StringBuilder s = new StringBuilder(10000);
+            StringBuffer r = new StringBuffer(10000);
+            
+            for (int i = 0; i < 10000; i++) {
+                s.append(a);
+            }
+            
+            for (int i = 0; i < 10000; i++) {
+                r.append(a);
+            }
+        }
+
+        
         final int rounds = Integer.decode(args[0]);
 
         for (int j = 0; j < rounds; j++) {
@@ -40,7 +50,7 @@ public class Stringer {
         }
         
         System.out.println("Builder" + "\t| Buffer");
-        System.out.println(builder_total/rounds + "\t " + buffer_total/rounds + "\n");
+        System.out.println(builder_total/(rounds*1000) + "\t " + buffer_total/(rounds*1000) + "\n");
 
     }
 
